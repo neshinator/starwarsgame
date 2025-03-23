@@ -5,7 +5,7 @@ import './Button.style.scss'
 * - A description of the Button component so that tooltips can understand this component
  */
 const Button = ({buttonText, ...htmlAttributes}: IButtonProps) => {
-    return <button {...htmlAttributes}>{buttonText}</button>
+    return <button className="Button" {...htmlAttributes}>{buttonText}</button>
 }
 
 export default Button
