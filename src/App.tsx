@@ -3,14 +3,15 @@ import './App.scss'
 import { Provider } from 'react-redux'
 import gameStore from './gameLogic/reducer/gameStore'
 import Container from './molecules/container'
+import BackgroundContainer from './components/BackgroundContainer'
 
 function App() {
   return (
-    <>
       <Provider store={gameStore}>
-        <Container />
+        <BackgroundContainer>
+          <Container />
+        </BackgroundContainer>
       </Provider>
-    </>
   )
 }
 
