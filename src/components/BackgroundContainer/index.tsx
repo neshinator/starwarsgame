@@ -8,7 +8,7 @@ import Logo from '../Logo'
 const BackgroundContainer = ({children, ...htmlAttributes}: IBackgroundContainerProps) => {
     return <div className="BackgroundContainer" {...htmlAttributes}>
         <div className='GameContainer'>
-            <Logo width={30} />
+            
             {children}
         </div>
     </div>

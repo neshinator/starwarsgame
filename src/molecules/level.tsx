@@ -9,6 +9,7 @@ import { quit } from "../gameLogic/reducer/isPlayingReducer"
 import Card from "../components/Card"
 import Button from "../components/Button"
 import { FilmQA } from "../gameLogic/filmQA"
+import Logo from "../components/Logo"
 
 type TGameQuestions = {
     question: string;
@@ -100,23 +101,29 @@ const Level = ({films}: {films: IFilmData[]}) => {
     }
 
     return <div>
-        {/* <NewGame /> */}
-        <div>
-            <Button buttonText="Quit" onClick={() => {
-                setUserAnswer(null)
-                setUserConfirm(false)
 
-                dispatch(resetLevel())
-                dispatch(resetScore())
-                dispatch(quit())
-            }} />
-        </div>
-        Level {levels.length}
-        <div>{score}</div>
-        {JSON.stringify(latestLevel)}
+            {/** Menu - painted myself into a corner here but this should be a separate component */}
+            <div style={{display: 'flex'}}>
+                <div style={{paddingTop: '2rem'}}>
+                    <div>Level {levels.length}</div>
+                    <div>Score: {score}</div>
+                </div>
+                <div style={{flexGrow: 1}}><Logo width={20} /></div>
+                <div style={{paddingTop: '2rem'}}>
+                    <Button  size="small" buttonText="Quit" onClick={() => {
+                        setUserAnswer(null)
+                        setUserConfirm(false)
+
+                        dispatch(resetLevel())
+                        dispatch(resetScore())
+                        dispatch(quit())
+                    }} />
+                </div>
+            </div>
+
         <div>
             <h2>{latestLevel?.question}</h2>
-            {latestLevel?.allAnswers.map((question, index) => <Card key={index} question={question} onClick={() => setUserAnswer(index)} />)}
+            {latestLevel?.allAnswers.map((question, index) => <Card key={index} isSelected={userAnswer === index} question={question} onClick={() => setUserAnswer(index)} />)}
         </div>
 
         {latestLevel && latestLevel.userAnswer !== null && !userConfirm && <div>

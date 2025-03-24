@@ -6,4 +6,5 @@ import { HTMLAttributes } from 'react'
 export interface IButtonProps extends HTMLAttributes<HTMLElement> {
     /** #### My first prop here **/
     buttonText: string;
+    size?: 'small' | 'regular'
 }

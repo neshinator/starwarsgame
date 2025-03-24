@@ -3,11 +3,13 @@ import {useDispatch} from 'react-redux'
 import { start, quit } from "../gameLogic/reducer/isPlayingReducer"
 import { reset as resetScore } from "../gameLogic/reducer/scoreReducer"
 import { reset as resetLevel } from "../gameLogic/reducer/levelReducer"
+import Logo from "../components/Logo"
 
 const NewGame = () => {
     const dispatch = useDispatch()
 
     return <div>
+        <Logo width={30} />
         <h1>Probably the best star wars game ever</h1>
         <p>Welcome intrepid hero and take the ulimate test to determine whether you are worthy.</p>
         <p>But beware! Fail and you will succumb to the dark side...</p>
