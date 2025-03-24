@@ -1,3 +1,28 @@
 .Card {
-    border: 1px solid red
+    border: 1px solid red;
+    width: 100%;
+    margin: 0.5rem 0rem;
+    min-height: 10vh;
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    background-color: black;
+    border-radius: 0.2rem;
+    box-shadow: inset 0px 0px 25px 0px rgba(255, 0, 0, 0.2);
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.isNotSelected {
+        opacity: 0.5;
+    }
+}
+
+@media (min-width:801px)  {
+    .Card {
+        min-height: 15vh;
+        padding: 1rem;
+        margin: 0 0.5rem;
+    }
 }

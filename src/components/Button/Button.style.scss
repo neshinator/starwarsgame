@@ -6,6 +6,10 @@
     color: #FFE81F;
     font-size: 1.2rem;
 
+    &:hover {
+        cursor: pointer;
+    }
+
     &.size-small {
         font-size: 0.85rem;
         padding: 1rem 1.5rem;

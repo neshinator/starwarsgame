@@ -1,6 +1,5 @@
 import {IBackgroundContainerProps} from './BackgroundContainer.types'
 import './BackgroundContainer.style.scss'
-import Logo from '../Logo'
 
 /** #### BackgroundContainer
 * - A description of the BackgroundContainer component so that tooltips can understand this component
@@ -8,7 +7,6 @@ import Logo from '../Logo'
 const BackgroundContainer = ({children, ...htmlAttributes}: IBackgroundContainerProps) => {
     return <div className="BackgroundContainer" {...htmlAttributes}>
         <div className='GameContainer'>
-            
             {children}
         </div>
     </div>

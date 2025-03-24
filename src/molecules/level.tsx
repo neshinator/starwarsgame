@@ -10,6 +10,8 @@ import Card from "../components/Card"
 import Button from "../components/Button"
 import { FilmQA } from "../gameLogic/filmQA"
 import Logo from "../components/Logo"
+import useIsMobile from "../hooks/useIsMobile"
+import Modal from "../components/Modal"
 
 type TGameQuestions = {
     question: string;
@@ -30,6 +32,8 @@ const generateLevel = (index: number, gameQuestions: TGameQuestions[]) => {
 const Level = ({films}: {films: IFilmData[]}) => {
     //to tackle the weird component mount twice issue when running in debug
     const hasDispatched = useRef(false);
+
+    const isMobile = useIsMobile()
 
     const [userAnswer, setUserAnswer] = useState<number | null>(null)
     const [userConfirm, setUserConfirm] = useState<boolean>(false)
@@ -100,6 +104,40 @@ const Level = ({films}: {films: IFilmData[]}) => {
         return null
     }
 
+    const returnScoreText = () => {
+        switch(score){
+            case 50:
+            case 40:
+                return <p>Those are some serious skills Master Jedi</p>
+            case 30:
+                return <p>You've got potential there novice! Continue honing those skills...</p>
+            case 20:
+                return <p>Not everyone can be a Jedi. There's droid work as well...</p>
+            case 10:
+                return <p>Best leave Jedi business to the pro's</p>
+            case 0:
+            default:
+                return <p>Well really! It looks like you've been living under a rock for the past few decades</p>
+        }
+    }
+
+    if (levels.length > 5){
+        return <div>
+            <Logo width={20} />
+            <h2>You scored {score} out of 50</h2>
+            {returnScoreText()}
+
+            <Button  size="regular" buttonText="Finish" onClick={() => {
+                setUserAnswer(null)
+                setUserConfirm(false)
+
+                dispatch(resetLevel())
+                dispatch(resetScore())
+                dispatch(quit())
+            }} />
+        </div>
+    }
+
     return <div>
 
             {/** Menu - painted myself into a corner here but this should be a separate component */}
@@ -123,22 +161,31 @@ const Level = ({films}: {films: IFilmData[]}) => {
 
         <div>
             <h2>{latestLevel?.question}</h2>
-            {latestLevel?.allAnswers.map((question, index) => <Card key={index} isSelected={userAnswer === index} question={question} onClick={() => setUserAnswer(index)} />)}
+            <div style={{display: 'flex', flexDirection: isMobile ? 'column' : 'row', flexGrow: 1}}>
+                {latestLevel?.allAnswers.map((question, index) => <Card key={index} isSelected={latestLevel?.userAnswer !== null ? latestLevel.userAnswer === index : null} question={question} onClick={() => setUserAnswer(index)} />)}
+            </div>
         </div>
 
         {latestLevel && latestLevel.userAnswer !== null && !userConfirm && <div>
-            <Button buttonText="Are you sure?" onClick={() => {
+            <p>Are you sure?</p>
+            <Button buttonText="That's my final answer" onClick={() => {
                 setUserConfirm(true)
                 scoreAnswer()
             }} />
         </div>}
         
-        {userConfirm && <div>
-            <div>{isCorrect ? 'Yo! You are the jedi' : 'Oh no! you are a clutz'}
-                <p>The correct answer is {latestLevel.allAnswers[latestLevel.correctAnswer]}</p>
+        {userConfirm && <Modal isOpen={userConfirm} close={() => setNewLevel(levels.length + 1)}>
+            <div style={{display: 'flex'}}>
+                <div className={`${isCorrect ? 'isCorrect' : 'isNotCorrect'}`}></div>
+                <div style={{paddingLeft: '1rem', textAlign: 'left'}}>
+                    <h3>{isCorrect ? 'Gooood! Gooooood! That is correct' : 'Uh oh! Meesa think yousa clumsy'}</h3>
+                    {isCorrect && <p></p>}
+                    {!isCorrect && <p>The correct answer is {latestLevel.allAnswers[latestLevel.correctAnswer]}</p>}
+                </div>
             </div>
+            
             <Button buttonText="Go to next level" onClick={() => setNewLevel(levels.length + 1)} />
-        </div>}
+        </Modal>}
     </div>
 }
 

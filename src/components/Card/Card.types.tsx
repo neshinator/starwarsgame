@@ -3,9 +3,8 @@
 import { HTMLAttributes } from 'react'
 
 /** #### Props for the Card component **/
-export interface ICardProps extends HTMLAttributes<Omit<HTMLDivElement, 'onClick'>> {
+export interface ICardProps extends HTMLAttributes<HTMLDivElement> {
     /** #### My first prop here **/
     question: string;
-    onClick: (answer: number) => void;
-    isSelected: boolean;
+    isSelected: boolean | null;
 }

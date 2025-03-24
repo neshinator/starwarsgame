@@ -5,7 +5,12 @@ import './Card.style.scss'
 * - A description of the Card component so that tooltips can understand this component
  */
 const Card = ({question, isSelected, ...htmlAttributes}: ICardProps) => {
-    return <div className='Card' {...htmlAttributes}>{question} {isSelected && <span>X</span>}</div>
+    let isSelectedClass = ''
+    if (isSelected !== null){
+        isSelectedClass = `${isSelected ? 'is' : 'isNot'}Selected`
+    }
+    
+    return <div className={`Card ${isSelectedClass}`} {...htmlAttributes}><h3>{question}</h3></div>
 }
 
 export default Card
