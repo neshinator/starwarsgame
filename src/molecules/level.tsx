@@ -12,6 +12,7 @@ import { FilmQA } from "../gameLogic/filmQA"
 import Logo from "../components/Logo"
 import useIsMobile from "../hooks/useIsMobile"
 import Modal from "../components/Modal"
+import { TGameStore } from "../gameLogic/reducer/gameStore"
 
 type TGameQuestions = {
     question: string;
@@ -38,10 +39,10 @@ const Level = ({films}: {films: IFilmData[]}) => {
     const [userAnswer, setUserAnswer] = useState<number | null>(null)
     const [userConfirm, setUserConfirm] = useState<boolean>(false)
     const [qa, setQa] = useState<FilmQA | null>(null)
-    const levels = useSelector((state) => state.level.value)
-    const score = useSelector(state => state.score.value)
+    const levels = useSelector((state: TGameStore) => state.level.value)
+    const score = useSelector((state: TGameStore) => state.score.value)
     const dispatch = useDispatch()
-    const latestLevel: TLevel = levels.length ? levels[levels.length - 1] : null
+    const latestLevel: TLevel | null = levels.length ? levels[levels.length - 1] : null
 
     const [gameQuestions, setGameQuestions] = useState<TGameQuestions[] | null>(null)
 
@@ -89,7 +90,7 @@ const Level = ({films}: {films: IFilmData[]}) => {
 
     //set a new score if correct
     const scoreAnswer = useCallback(() => {
-        const isCorrect = latestLevel.correctAnswer === latestLevel.userAnswer
+        const isCorrect = latestLevel?.correctAnswer === latestLevel?.userAnswer
         if (isCorrect){
             dispatch(addAmount(10))
         }
@@ -97,7 +98,7 @@ const Level = ({films}: {films: IFilmData[]}) => {
 
     let isCorrect = false
     if (userConfirm) {
-        isCorrect = latestLevel.correctAnswer === latestLevel.userAnswer
+        isCorrect = latestLevel?.correctAnswer === latestLevel?.userAnswer
     }
 
     if (!films) {
@@ -180,7 +181,7 @@ const Level = ({films}: {films: IFilmData[]}) => {
                 <div style={{paddingLeft: '1rem', textAlign: 'left'}}>
                     <h3>{isCorrect ? 'Gooood! Gooooood! That is correct' : 'Uh oh! Meesa think yousa clumsy'}</h3>
                     {isCorrect && <p></p>}
-                    {!isCorrect && <p>The correct answer is {latestLevel.allAnswers[latestLevel.correctAnswer]}</p>}
+                    {!isCorrect && <p>The correct answer is {latestLevel?.allAnswers[latestLevel.correctAnswer]}</p>}
                 </div>
             </div>
             
