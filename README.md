@@ -28,16 +28,19 @@ This is a **Star Wars trivia mini-game** built with React that uses the **Star W
    npm run plop
    ```
    To maintain a standard for component creation, the plop feature 'plops' a template of files into a given component folder for faster creation and standardisation.
+
 2. Storybook:
    ```sh
    npm run storybook
    ```
    Component creation in isolation is a pragmatic approach in order to create self-encapsulating robust features. Also it's easier for developers to test in StoryBook against different mocked data.
+
 3. Unit test:
     ```sh
    npm run test
    ```
    Run vitest unit tests
+
 4. E2E test:
     ```sh
    npm run test:e2e
@@ -51,12 +54,8 @@ This is a **Star Wars trivia mini-game** built with React that uses the **Star W
 - Work on the design, specifically cards and buttons
 - Accessibility - time constraints meant that I didn't spend any time specifically coding a11y features - though I used native elements e.g. dialog so that some native support for a11y comes with the components.
 - Though I specifically designed mobile-first, some of the css styling needs a lot more TLC. I probably made a mistake going the scss route - though I think in the long term it's easier to maintain it can be cumbersome to set up and deliver. Use of tailwind would have resulted in faster results and even better programmability.
+- Unit tests and e2e tests - only enough time to get barely the minimum working. I tried installing cypress but couldn't get it to work so ended up going for playwright (which I've not used before).
 
 ## License
 
 This project is licensed under the MIT License.
-
----
-
-Save this file as `README.md` to use it in your repository.
-
