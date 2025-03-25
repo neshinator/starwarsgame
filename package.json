@@ -24,6 +24,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.6",
     "@eslint/js": "^9.21.0",
+    "@playwright/test": "^1.51.1",
     "@storybook/addon-essentials": "^8.6.8",
     "@storybook/addon-onboarding": "^8.6.8",
     "@storybook/blocks": "^8.6.8",
@@ -31,6 +32,7 @@
     "@storybook/react": "^8.6.8",
     "@storybook/react-vite": "^8.6.8",
     "@storybook/test": "^8.6.8",
+    "@types/node": "^22.13.13",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react-swc": "^3.8.0",
