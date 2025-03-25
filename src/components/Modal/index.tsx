@@ -17,7 +17,7 @@ const Modal = ({children, isOpen, close, ...htmlAttributes}: IModalProps) => {
         if (!element) return;
         close();
         element?.close();
-    }, [element])
+    }, [element, close])
 
     useEffect(() => {
         if (!element) return;
@@ -26,7 +26,7 @@ const Modal = ({children, isOpen, close, ...htmlAttributes}: IModalProps) => {
         } else {
             closeModal()
         }
-    }, [isOpen, element])
+    }, [isOpen, element, closeModal, openModal])
 
     const handleNativeCloseEvent = () => {
         closeModal()

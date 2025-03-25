@@ -12,6 +12,9 @@ export class FilmQA {
     constructor(films: Movie[]) {
         this.qaMap = new Map();
 
+        // time pressures require hardcoding these answers upfront, knowing the information that is coming down.
+        // however, we could deduce random "correct" answers based on the data itself e.g. get film data for 'A new hope'
+        // and get two random release dates from the rest of the data
         this.incorrectAnswers = {
             "The Last Jedi": ["Return of the Jedi", "A Phantom Menace"],
             "George Lucas": ["Irvin Kershner", "Richard Marquand"],
@@ -35,8 +38,6 @@ export class FilmQA {
             this.qaMap.set(directorQ, film.director);
             this.qaMap.set(releaseQ, film.release_date);
         });
-
-        console.log('-----------', this.qaMap)
     }
 
     // Get all the questions
@@ -56,22 +57,5 @@ export class FilmQA {
             }
         }
         throw new Error('no answers returned for some reason?')
-    }
-
-    // Get a random "false" question with its correct answer and alternatives
-    getFalseQuestion(arrayNumber: number): { correct: string, incorrect: string[]} {
-        const questions = Array.from(this.qaMap.keys());
-        const randomQuestion = questions[arrayNumber];
-        const answer = this.qaMap.get(randomQuestion);
-
-        if (!answer){
-            throw new Error('answer requested returned nothing')
-        }
-        const incorrectOptions = this.incorrectAnswers[answer];
-
-        return {
-            correct: answer,
-            incorrect: incorrectOptions
-        };
     }
 }
