@@ -143,13 +143,13 @@ const Level = ({films}: {films: IFilmData[]}) => {
 
             {/** Menu - painted myself into a corner here but this should be a separate component */}
             <div style={{display: 'flex'}}>
-                <div style={{paddingTop: '2rem'}}>
+                <div style={{paddingTop: '2rem', minWidth: '100px'}}>
                     <div>Level {levels.length}</div>
                     <div>Score: {score}</div>
                 </div>
                 <div style={{flexGrow: 1}}><Logo width={20} /></div>
-                <div style={{paddingTop: '2rem'}}>
-                    <Button  size="small" buttonText="Quit" onClick={() => {
+                <div style={{paddingTop: '2rem', minWidth: '100px'}}>
+                    <Button data-testid='quit' size="small" buttonText="Quit" onClick={() => {
                         setUserAnswer(null)
                         setUserConfirm(false)
 
@@ -159,17 +159,16 @@ const Level = ({films}: {films: IFilmData[]}) => {
                     }} />
                 </div>
             </div>
-
         <div>
             <h2>{latestLevel?.question}</h2>
             <div style={{display: 'flex', flexDirection: isMobile ? 'column' : 'row', flexGrow: 1}}>
-                {latestLevel?.allAnswers.map((question, index) => <Card key={index} isSelected={latestLevel?.userAnswer !== null ? latestLevel.userAnswer === index : null} question={question} onClick={() => setUserAnswer(index)} />)}
+                {latestLevel?.allAnswers.map((question, index) => <Card data-testid={`card-${index + 1}`} key={index} isSelected={latestLevel?.userAnswer !== null ? latestLevel.userAnswer === index : null} question={question} onClick={() => setUserAnswer(index)} />)}
             </div>
         </div>
 
         {latestLevel && latestLevel.userAnswer !== null && !userConfirm && <div>
             <p>Are you sure?</p>
-            <Button buttonText="That's my final answer" onClick={() => {
+            <Button data-testid='are_you_sure' buttonText="That's my final answer" onClick={() => {
                 setUserConfirm(true)
                 scoreAnswer()
             }} />
@@ -185,7 +184,7 @@ const Level = ({films}: {films: IFilmData[]}) => {
                 </div>
             </div>
             
-            <Button buttonText="Go to next level" onClick={() => setNewLevel(levels.length + 1)} />
+            <Button data-testid='next' buttonText="Next Question" onClick={() => setNewLevel(levels.length + 1)} />
         </Modal>}
     </div>
 }

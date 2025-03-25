@@ -4,18 +4,10 @@
     flex-direction: column;
     height: 100vh;
     place-items: center;
-    // background-color: black;
-    // overflow: hidden;
     justify-content: center;
 
-    // min-width: 320px;
-    // min-height: 100;
-    // display: flex;
-    // place-items: center;
-
-    background: black url("/public/background.jpg") no-repeat fixed center;
+    background: black url("/background.jpg") no-repeat fixed center;
     background-size: cover;
-
 
     .GameContainer {
         border: 1px solid #FFE81F;
@@ -34,9 +26,21 @@
         .GameContainer {
             max-height: 60vh;
             max-width: 60%;
-            -webkit-box-shadow:0px 0px 105px 20px rgba(255,213,46,0.21);
-            -moz-box-shadow: 0px 0px 105px 20px rgba(255,213,46,0.21);
             box-shadow: 0px 0px 105px 20px rgba(255,213,46,0.21);
+
+            h1 {
+                font-size: 1.7rem;
+            }
+        }
+    }
+}
+
+@media (min-width:1280px)  {
+    .BackgroundContainer {
+        .GameContainer {
+            h1 {
+                font-size: 2rem;
+            }
         }
     }
 }

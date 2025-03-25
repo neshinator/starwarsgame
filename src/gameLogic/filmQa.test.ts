@@ -26,7 +26,6 @@ describe("gameLogic/filmQA", () => {
     })
 
     it('should return the correct array of questions and answers based on the array data provided', () => {
-        
         const filmQA = new FilmQA(mockData)
         const questions = filmQA.getQuestions()
 
@@ -50,5 +49,4 @@ describe("gameLogic/filmQA", () => {
         expect(answers.incorrect).toContain('A Phantom Menace')
         expect(answers.incorrect).toContain('Return of the Jedi')
     })
-
 })
