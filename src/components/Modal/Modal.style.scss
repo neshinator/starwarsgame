@@ -16,13 +16,13 @@
     }
 
     .isCorrect {
-        background: url('/public/good.jpg') no-repeat  center;
+        background: url('/good.jpg') no-repeat  center;
         background-size: contain;
         flex: 1;
     }
 
     .isNotCorrect {
-        background: url('/public/bad.jpg') no-repeat  center;
+        background: url('/bad.jpg') no-repeat  center;
         background-size: contain;
         width: 50%;
         flex: 1
