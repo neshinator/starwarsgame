@@ -55,6 +55,7 @@ This is a **Star Wars trivia mini-game** built with React that uses the **Star W
 - Accessibility - time constraints meant that I didn't spend any time specifically coding a11y features - though I used native elements e.g. dialog so that some native support for a11y comes with the components.
 - Though I specifically designed mobile-first, some of the css styling needs a lot more TLC. I probably made a mistake going the scss route - though I think in the long term it's easier to maintain it can be cumbersome to set up and deliver. Use of tailwind would have resulted in faster results and even better programmability.
 - Unit tests and e2e tests - only enough time to get barely the minimum working. I tried installing cypress but couldn't get it to work so ended up going for playwright (which I've not used before).
+- Comments - the plop file comment structure gives a great way to layout components so that you can get tooltips from your IDE when importing or using those components. However, those comments take time to update and so most of the boilerplate comments are still in use and need changing.
 
 ## License
 
